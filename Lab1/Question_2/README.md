@@ -2,7 +2,7 @@
 
 ## 1. Problem Summary
 - Implemented matrix multiplication using OpenMP.
-- Part A (Q2): 1D parallelization using the outer i-loop.
+- Part A (Q2): 1D parallelization using the outer i loop.
 - Part B (Q2b): 2D parallelization using collapse(2) on i and j loops.
 - Compared performance across thread counts 1, 2, 4, 7, and 14.
 
@@ -42,7 +42,7 @@ gcc -fopenmp Q2b.c -o Q2b
 ## 4. Observations (1D Parallelization)
 
 - The 1D version scales well up to 7 threads, matching the number of physical cores.
-- Speedup is nearly linear until 7 threads because matrix multiplication is compute-heavy.
+- Speedup is nearly linear until 7 threads because matrix multiplication is computation heavy.
 - Efficiency exceeds 100% for 2 and 4 threads due to improved cache locality in the parallel version.
 - Performance flattens after 7 threads because memory bandwidth becomes a bottleneck.
 - Hyperthreading (14 threads) provides a small improvement but efficiency drops significantly.
@@ -54,7 +54,7 @@ gcc -fopenmp Q2b.c -o Q2b
 - The parallel fraction is high, so speedup grows rapidly at low thread counts.
 - After physical cores are saturated, memory stalls limit further speedup.
 - The remaining sequential work and memory traffic dominate at high thread counts.
-- Demonstrates practical Amdahl’s Law behavior for a compute-intensive algorithm.
+- Demonstrates practical Amdahl’s Law behavior for a computation intensive algorithm.
 
 ---
 
@@ -101,7 +101,7 @@ gcc -fopenmp Q2b.c -o Q2b
 
 ## 4. Amdahl’s Law Interpretation (2D)
 - Parallel fraction increases when using collapse(2), so speedup improves.
-- However, memory-wall effects still limit performance after 7 threads.
+- However, memory wall effects still limit performance after 7 threads.
 - Hyperthreading gives diminishing returns due to shared execution units.
 - Demonstrates how algorithm structure affects achievable parallel speedup.
 
