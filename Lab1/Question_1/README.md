@@ -35,19 +35,19 @@ OMP_NUM_THREADS=<n> ./Q1
 
 ## 4. Observations
 
-- DAXPY is **heavily memory-bandwidth bound**, so extra threads do not help. 
-- The workload per thread is extremely small; **OpenMP overhead dominates**. 
-- Performance becomes **worse** as threads increase — the best time is with 1 thread. 
-- Hyperthreading (14 threads) makes performance drop sharply because 14 logical threads overload a 7-core CPU. 
-- Efficiency collapses from 29% → 0.07%, showing strong **Amdahl’s Law** limitations. 
-- Demonstrates that **not all operations benefit from parallelism**, especially small, memory-bound kernels.
+- DAXPY is heavily memory bandwidth bound, so extra threads do not help. 
+- The workload per thread is extremely small , OpenMP overhead dominates. 
+- Performance becomes worse as threads increase , the best time is with 1 thread. 
+- Hyperthreading (14 threads) makes performance drop sharply because 14 logical threads overload a 7 core CPU. 
+- Efficiency collapses from 29% to 0.07%, showing strong Amdahl’s Law limitations. 
+- Demonstrates that not all operations benefit from parallelism, especially small, memory bound kernels.
 
 ---
 
 ## 5. Amdahl’s Law Interpretation  
 - DAXPY has a very small parallel region relative to total overhead. 
 - The “parallel fraction” is extremely low, so speedup cannot grow. 
-- After 1–2 threads, overhead > useful work, causing negative scaling. 
-- This makes DAXPY a perfect example of **when OpenMP parallelism is counterproductive**.
+- After 1 to 2 threads, overhead > useful work, causing negative scaling. 
+- This makes DAXPY a perfect example of when OpenMP parallelism is counterproductive.
 
 ---
