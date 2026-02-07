@@ -47,4 +47,3 @@ The experiment demonstrates that dynamic scheduling provides the best handling o
 
 These results reinforce the importance of choosing an appropriate scheduling strategy when workloads per iteration vary significantly.
 
-End of Experiment 4
