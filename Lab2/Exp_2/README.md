@@ -12,24 +12,24 @@ The goal is to measure:
 ### **A. Formulas Used**
 
 #### **Speedup**
-\[
-S(p) = \frac{T_1}{T_p}
-\]
+
+S(p) = T₁ / Tₚ
+
 
 #### **Parallel Efficiency**
-\[
-E(p) = \frac{S(p)}{p}
-\]
+
+E(p) = S(p) / p
+
 
 #### **Throughput**
-\[
-\text{Throughput}(p) = \frac{N}{T_p}
-\]
+
+Throughput = N / Tₚ
+
 
 Where:
-- \(T_1\) = execution time with 1 thread  
-- \(T_p\) = execution time with p threads  
-- \(N\) = total number of vector elements (100,000,000 in our program)
+- T₁ = execution time with 1 thread  
+- Tₚ = execution time with p threads  
+- N = total number of vector elements (100,000,000 in our program)
 
 ---
 
@@ -76,13 +76,10 @@ Efficiency = S(p) / p
 ### **E. Throughput Calculation**
 
 Given:
-\[
-N = 100,000,000 \text{ elements}
-\]
 
-\[
-\text{Throughput} = \frac{10^8}{T_p}
-\]
+N = 100,000,000 
+Throughput = N / Tₚ
+
 
 | Threads | Time (s) | Throughput (elements/sec) |
 |---------|----------|----------------------------|
