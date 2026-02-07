@@ -63,5 +63,3 @@ In weak scaling, each thread is assigned a fixed workload of 100 million integra
 Strong scaling demonstrates diminishing returns as threads increase, primarily due to memory bandwidth limitations and synchronization overheads inherent in shared memory architectures. Weak scaling shows that although the program handles growing workloads effectively, the system’s memory subsystem becomes the bottleneck at higher thread counts.
 
 The combined results suggest that this numerical integration workload is more memory bound than compute bound. Optimization efforts would therefore be more effective if focused on improving memory access behavior rather than attempting to further increase thread concurrency.
-
-End of Experiment 3
