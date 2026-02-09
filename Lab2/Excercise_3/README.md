@@ -43,6 +43,9 @@ The following execution times were recorded for the given thread counts:
 | 16      | 4.10367             |
 | 20      | 4.07943             |
 
+## Graphs 
+![Combined Graphs](./Graph1.png)
+
 ## Observations
 
 1. The program shows significant speedup when increasing from one thread to four threads.
