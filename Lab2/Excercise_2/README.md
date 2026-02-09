@@ -43,6 +43,10 @@ Execution times for different thread counts are listed below:
 | 8       | 0.001533320         |
 | 16      | 0.001824380         |
 
+## Graphs 
+
+![Smith-Waterson Execution Time vs Threads](./Graph1.png)
+
 ## Observations
 
 1. The execution time increases with thread count instead of decreasing.  
