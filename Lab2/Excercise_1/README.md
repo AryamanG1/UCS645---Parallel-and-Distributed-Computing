@@ -59,6 +59,10 @@ Speedup S(p) = T1 / Tp
 | 8       | 2.39     |
 | 16      | 2.17     |
 
+## Graphs 
+
+![Combined Graphs](./Graph_1.png)
+
 ## Observations
 
 1. The program shows good scaling up to eight threads and achieves more than a 2× speedup.
