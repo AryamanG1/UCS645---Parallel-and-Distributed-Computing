@@ -2,137 +2,152 @@
 
 ## Problem Statement
 
-Given a matrix of size ny × nx containing m input vectors (rows),\
-compute the correlation coefficient between every pair of input vectors.
+Given a matrix of size **ny × nx** containing **m input vectors (rows)**,  
+compute the **correlation coefficient** between every pair of input vectors.
 
-For all 0 ≤ j ≤ i \< ny, compute the correlation between row i and row
-j\
-and store the result in the lower triangular matrix position:
+For all `0 ≤ j ≤ i < ny`, compute:
 
-result\[i + j \* ny\]
+    correlation(row_i, row_j)
 
-All arithmetic operations are performed using double precision.
+Store the result in the lower triangular matrix location:
 
-------------------------------------------------------------------------
+    result[i + j * ny]
+
+All arithmetic operations are performed using **double precision**.
+
+---
 
 ## Implementations
 
-Three implementations are provided:
+Three versions are implemented:
 
-1.  Sequential baseline version\
-2.  OpenMP parallel version\
-3.  Optimized fast version (OpenMP + SIMD + -O3)
+| Version      | Description                                           |
+|--------------|-------------------------------------------------------|
+| Sequential   | Baseline single-threaded implementation               |
+| OpenMP       | Multi-threaded parallel implementation                |
+| Fast         | OpenMP + SIMD + -O3 compiler optimizations            |
 
-------------------------------------------------------------------------
+---
 
 ## Compilation
 
-``` bash
+```bash
 make
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Execution
 
-``` bash
+```bash
 ./correlate <ny> <nx>
 ```
 
 Example:
 
-``` bash
+```bash
 ./correlate 2000 2000
 ```
 
-------------------------------------------------------------------------
+---
 
-## Performance Evaluation
+# Performance Evaluation
 
-Matrix Size Tested: 2000 × 2000
+**Matrix Size Tested:** 2000 × 2000
 
-------------------------------------------------------------------------
+---
+
+## Execution Time Comparison
 
 ### 1 Thread
 
-Sequential Time: 4.32922 sec\
-OpenMP Time: 3.84766 sec\
-Fast Time: 4.07639 sec
-
-------------------------------------------------------------------------
+| Version     | Time (sec) |
+|------------|------------|
+| Sequential | 4.32922    |
+| OpenMP     | 3.84766    |
+| Fast       | 4.07639    |
 
 ### 2 Threads
 
-Sequential Time: 4.17719 sec\
-OpenMP Time: 2.20747 sec\
-Fast Time: 2.07414 sec
-
-------------------------------------------------------------------------
+| Version     | Time (sec) |
+|------------|------------|
+| Sequential | 4.17719    |
+| OpenMP     | 2.20747    |
+| Fast       | 2.07414    |
 
 ### 4 Threads
 
-Sequential Time: 4.20303 sec\
-OpenMP Time: 1.32696 sec\
-Fast Time: 1.19499 sec
-
-------------------------------------------------------------------------
+| Version     | Time (sec) |
+|------------|------------|
+| Sequential | 4.20303    |
+| OpenMP     | 1.32696    |
+| Fast       | 1.19499    |
 
 ### 8 Threads
 
-Sequential Time: 4.57222 sec\
-OpenMP Time: 0.757956 sec\
-Fast Time: 0.587033 sec
+| Version     | Time (sec) |
+|------------|------------|
+| Sequential | 4.57222    |
+| OpenMP     | 0.757956   |
+| Fast       | 0.587033   |
 
-------------------------------------------------------------------------
+---
 
-## Speedup Analysis (Fast Version)
+# Speedup Analysis (Fast Version)
 
-Speedup = T₁ / Tₙ
+Speedup formula:
 
-  Threads   Fast Time (sec)   Speedup
-  --------- ----------------- ---------
-  1         4.07639           1.00x
-  2         2.07414           1.97x
-  4         1.19499           3.41x
-  8         0.587033          6.94x
+    Speedup = T1 / Tn
 
-Near-linear scaling is observed up to 8 threads.
+| Threads | Fast Time (sec) | Speedup |
+|---------|-----------------|----------|
+| 1       | 4.07639         | 1.00×    |
+| 2       | 2.07414         | 1.97×    |
+| 4       | 1.19499         | 3.41×    |
+| 8       | 0.587033        | 6.94×    |
 
-------------------------------------------------------------------------
+Parallel Efficiency (8 threads):
 
-## perf Statistics (8 Threads)
+    Efficiency = 6.94 / 8 ≈ 86.7%
 
-CPUs utilized: \~2.43\
-Instructions per cycle: \~1.27\
-Branch miss rate: \~0.08%\
-Total elapsed time: \~6.05 sec
+---
 
-------------------------------------------------------------------------
+#  perf Statistics (8 Threads)
 
-## Optimization Techniques Used
+| Metric                     | Value     |
+|----------------------------|-----------|
+| CPUs utilized              | ~2.43     |
+| Instructions per cycle     | ~1.27     |
+| Branch miss rate           | ~0.08%    |
+| Total elapsed time         | ~6.05 sec |
 
--   Precomputation of row means and normalization
--   Lower triangular computation only
--   OpenMP parallelization
--   Loop collapse for nested loops
--   SIMD reduction pragma
--   Compiler optimization flag -O3
--   Improved memory access locality
+---
 
-------------------------------------------------------------------------
+#  Optimization Techniques Used
 
-## Observations
+- Precomputation of row means and normalization  
+- Lower triangular computation only  
+- OpenMP parallelization  
+- Loop collapse for nested loops  
+- SIMD reduction pragma  
+- Compiler optimization flag -O3  
+- Improved memory access locality  
 
--   Sequential implementation scales quadratically with ny.
--   Parallel implementation significantly reduces execution time.
--   Speedup improves as thread count increases.
--   Memory bandwidth begins to limit scaling at higher thread counts.
--   SIMD improves inner loop performance.
+---
 
-------------------------------------------------------------------------
+#  Observations
 
-## Clean Build
+- Time complexity grows approximately O(ny² × nx).
+- Parallel implementation significantly reduces execution time.
+- Speedup scales nearly linearly up to 8 threads.
+- Memory bandwidth begins to limit scaling at higher thread counts.
+- SIMD improves inner loop arithmetic throughput.
 
-``` bash
+---
+
+##  Clean Build
+
+```bash
 make clean
 ```
+
